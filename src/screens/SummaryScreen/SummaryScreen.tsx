@@ -1,5 +1,5 @@
 import {Text, View} from 'react-native'
-import Menu from '../../components/Menu'
+import Menu from '@/components/Menu'
 
 function RandomScreen() {
     return (

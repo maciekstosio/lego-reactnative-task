@@ -1,6 +1,6 @@
 import { Dimensions, Text, View } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
-import Menu from '../../components/Menu'
+import Menu from '@/components/Menu'
 import {useState} from 'react'
 
 function RandomScreen() {
