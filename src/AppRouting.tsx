@@ -15,9 +15,9 @@ const Stack = createNativeStackNavigator<RootStackParamList>()
 export default function AppRouting() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName='PersonalDetails'>
-                <Stack.Screen name="PersonalDetails" component={PersonalDetailsScreen} />
+            <Stack.Navigator initialRouteName='Random'>
                 <Stack.Screen name="Random" component={RandomScreen} />
+                <Stack.Screen name="PersonalDetails" component={PersonalDetailsScreen} />
                 <Stack.Screen name="Summary" component={SummaryScreen} />
             </Stack.Navigator>
         </NavigationContainer>

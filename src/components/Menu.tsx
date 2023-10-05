@@ -9,7 +9,7 @@ const Menu = () => {
     return (
         <>
             <TouchableOpacity onPress={() => navigation.navigate('PersonalDetails')}><Text>PersonalDetails</Text></TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Random')}><Text>Redeem</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Random')}><Text>Random</Text></TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Summary')}><Text>Summary</Text></TouchableOpacity>
         </>
     )

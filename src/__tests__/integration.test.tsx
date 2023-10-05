@@ -1,5 +1,7 @@
-import {render, screen} from '@testing-library/react-native'
+import {render, screen, waitFor} from '@testing-library/react-native'
 import AppRouting from '../AppRouting'
+
+jest.useFakeTimers()
 
 describe('integration test', () => {
     it('renders successfully ', () => {
@@ -8,11 +10,28 @@ describe('integration test', () => {
         )
     })
     
-    it('renders details screen as default ', () => {
+    it('renders random screen as default ', async () => {
         render(
             <AppRouting />
         )
 
-        expect(screen.getByText('Personal Details Screen')).toBeOnTheScreen()
+        expect(screen.getByText('Random Screen')).toBeOnTheScreen()
+    })
+
+    it('loads carusel succesfully ', async () => {
+        render(
+            <AppRouting />
+        )
+        
+        await waitFor(() => screen.getByTestId("__CAROUSEL_ITEM_0_READY__"));
+    })
+
+    it('loads carusel succesfully ', async () => {
+        render(
+            <AppRouting />
+        )
+        
+        await waitFor(() => screen.getByTestId("__CAROUSEL_ITEM_0_READY__"));
+        
     })
 })
