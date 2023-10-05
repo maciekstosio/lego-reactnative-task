@@ -1,8 +1,8 @@
 import 'react-native-gesture-handler'
-import AppRouting from './src/AppRouting'
+import AppContainer from '@/AppContainer'
 
 export default function App() {
   return (
-    <AppRouting />
+    <AppContainer />
   );
 }

@@ -1,18 +1,18 @@
 import {render, screen, waitFor} from '@testing-library/react-native'
-import AppRouting from '../AppRouting'
+import AppContainer from '../AppContainer'
 
 jest.useFakeTimers()
 
 describe('integration test', () => {
     it('renders successfully ', () => {
         render(
-            <AppRouting />
+            <AppContainer />
         )
     })
     
     it('renders random screen as default ', async () => {
         render(
-            <AppRouting />
+            <AppContainer />
         )
 
         expect(screen.getByText('Random Screen')).toBeOnTheScreen()
@@ -20,7 +20,7 @@ describe('integration test', () => {
 
     it('loads carusel succesfully ', async () => {
         render(
-            <AppRouting />
+            <AppContainer />
         )
         
         await waitFor(() => screen.getByTestId("__CAROUSEL_ITEM_0_READY__"));
@@ -28,10 +28,12 @@ describe('integration test', () => {
 
     it('loads carusel succesfully ', async () => {
         render(
-            <AppRouting />
+            <AppContainer />
         )
         
         await waitFor(() => screen.getByTestId("__CAROUSEL_ITEM_0_READY__"));
         
+        expect(screen.getByText('Random Screen tests')).toBeOnTheScreen()
     })
+
 })
