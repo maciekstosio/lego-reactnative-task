@@ -166,7 +166,7 @@ describe('random screen integration test', () => {
     })
 })
 
-describe('details screen integration test', () => {
+describe('personal details screen integration test', () => {
     const goGoDetailsScreen = async () => {
         await waitForElementToBeRemoved(() => screen.getByText('Loading...'))
 
