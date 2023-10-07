@@ -1,5 +1,5 @@
 import {StyleSheet, Pressable} from 'react-native';
-import {legoRed} from '@/theme'
+import {legoRed} from '@/utils/theme'
 
 interface CardProps {
     onPress?: () => void;

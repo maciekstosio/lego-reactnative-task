@@ -2,7 +2,7 @@ import {QueryClient, QueryClientProvider} from 'react-query'
 import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import {PersonalDetailsScreen, RandomScreen, SummaryScreen} from '@/screens'
-import {NavigationColors} from './theme'
+import {NavigationColors} from './utils/theme'
 
 export type RootStackParamList = {
     PersonalDetails: undefined
