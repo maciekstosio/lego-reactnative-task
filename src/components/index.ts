@@ -1,7 +1,7 @@
-export {default as Menu} from './Menu'
 export {default as Image} from './Image'
 export {default as Card} from './Card'
 export {default as LoaderScreen} from './LoaderScreen'
 export {default as MinifigCard} from './MinifigCard'
 export {default as StateScreen} from './StateScreen'
 export {default as Button} from './Button'
+export * from './Input'

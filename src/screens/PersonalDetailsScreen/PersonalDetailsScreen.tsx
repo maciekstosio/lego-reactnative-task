@@ -1,68 +1,97 @@
-import {Text, TextInput, View} from 'react-native'
-import {Controller, useController, useForm} from 'react-hook-form'
+import {Dimensions, Keyboard, TouchableWithoutFeedback} from 'react-native'
+import {useForm} from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-import Menu from '@/components/Menu'
-import {Button} from '@/components'
-
-const userDetailsSchema = yup.object({
-    fullName: yup.string().required(),
-    email: yup.string().email().required(),
-    adress: yup.string().required(),
-    city: yup.string().required(),
-    state: yup.string().required(),
-    zipcode: yup.number().required(),
-})
-
-interface InputProps {
-    name: string;
-    control: any;
-}
-
-const Input = ({
-    name,
-    control
-}: InputProps) => {
-    return (
-        <View style={{}}>
-            <View>
-                <Text>{name}</Text>
-            </View>
-            <Controller
-                control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
-                    <TextInput
-                        placeholder={name}
-                        onBlur={onBlur}
-                        onChangeText={onChange}
-                        value={value}
-                    />
-                )}
-                name={name}
-            />
-            <View>
-                <Text></Text>
-            </View>
-        </View>
-    )
-}
+import {Button, ControledInput} from '@/components'
+import {View, Text, KeyboardAwareScrollView} from 'react-native-ui-lib'
+import {UserDetails, userDetailsSchema} from '@/types'
+import {useNavigation, useRoute} from '@/utils'
 
 function PersonalDetailsScreen() {
-    const {control, handleSubmit, formState} = useForm({
-        mode: 'onSubmit',
+    const {height} = Dimensions.get('window')
+    const {params: {minifig}} = useRoute<'PersonalDetails'>()
+    const navigation = useNavigation()
+
+    const {control, handleSubmit, formState: {isValid}} = useForm({
+        defaultValues: {
+            fullName: '',
+            email: '',
+            adress: '',
+            city: '',
+            state: '',
+            zipcode: ''
+        },
+        mode: 'onBlur',
+        reValidateMode: 'onChange',
         resolver: yupResolver(userDetailsSchema),
     })
 
-    console.log('render', formState)
+    const onSubmit = (userDetails: UserDetails) => navigation.navigate('Summary', {
+        minifig,
+        userDetails: userDetails,
+    })
 
     return (
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Text>Personal Details Screen</Text>
-            <Input name="fullName" control={control}/>
-            <Input name="email" control={control}/>
-            <Button label="Submit" onPress={handleSubmit((props) => console.log(props))}/>
-            <Menu />
-        </View>
+        <KeyboardAwareScrollView>
+            <TouchableWithoutFeedback
+                onPress={Keyboard.dismiss}
+                accessible={false}
+            >
+                <View 
+                    style={{
+                        flex: 1,
+                        padding: 20,
+                        justifyContent: 'space-evenly',
+                        minHeight: height
+                    }}
+                >
+                    <Text text50M center>PERSONAL DETAILS</Text>
+                    <View>
+                        <ControledInput
+                            label="Full name"
+                            name="fullName"
+                            autoComplete="name"
+                            control={control}
+                        />
+                        <ControledInput
+                            label="Email"
+                            name="email"
+                            control={control}
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                            autoComplete="email"
+                        />
+                        <ControledInput
+                            label="Adress"
+                            name="adress"
+                            control={control}
+                            autoComplete="address-line1"
+                        />
+                        <ControledInput
+                            label="City"
+                            name="city"
+                            control={control}
+                        />
+                        <ControledInput
+                            label="State"
+                            name="state"
+                            control={control}
+                        />
+                        <ControledInput
+                            label="Zip code"
+                            name="zipcode"
+                            control={control}
+                            autoComplete="postal-code"
+                        />
+                    </View>
+                    <Button
+                        testID="viewSummary"
+                        label="View summary"
+                        disabled={!isValid}
+                        onPress={handleSubmit(onSubmit)}
+                    />
+                </View>
+            </TouchableWithoutFeedback>
+        </KeyboardAwareScrollView>
     )
 }
 

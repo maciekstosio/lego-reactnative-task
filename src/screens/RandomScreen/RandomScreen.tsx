@@ -2,19 +2,17 @@ import {useCallback, useState} from 'react'
 import { Dimensions, SafeAreaView } from 'react-native'
 import Carousel from 'react-native-reanimated-carousel'
 import {Text, View} from 'react-native-ui-lib'
-import {useNavigation} from '@react-navigation/native'
-import {NativeStackNavigationProp} from '@react-navigation/native-stack'
-import {RootStackParamList} from '@/AppContainer'
 import {useRandomMinifigs} from '@/services/useRandomMinifigs'
 import {Card, MinifigCard, LoaderScreen, StateScreen, Button} from '@/components'
+import {useNavigation} from '@/utils'
 
 function RandomScreen() {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+    const navigation = useNavigation()
     const {data, isLoading, isError, error, refetch} = useRandomMinifigs()
-    const [selected, setSelected] = useState<string | null>(null)
+    const [selected, setSelected] = useState<number | null>(null)
     const {width, height} = Dimensions.get('window')
-    
-    const toggleSelected = useCallback((newState: string) => setSelected(currentState => {
+
+    const toggleSelected = useCallback((newState: number) => setSelected(currentState => {
         if (currentState === newState) {
             return null
         }
@@ -37,6 +35,17 @@ function RandomScreen() {
         )
     }
 
+    if (data === undefined || data.length === 0) {
+        return (
+            <StateScreen
+                title="Unexpected error"
+                subtitle="Unexpected server error occured"
+                buttonLabel="Try again"
+                onPress={refetch}
+            />
+        )
+    }
+
     return (
         <SafeAreaView style={{ flex: 1, justifyContent: 'space-evenly' }}>
             <Text text50M center>CHOOSE YOUR MINIFIG</Text>
@@ -44,14 +53,14 @@ function RandomScreen() {
                 loop
                 width={width}
                 height={height / 2}
-                data={data ?? []}
+                data={data}
                 scrollAnimationDuration={500}
                 mode="parallax"
-                renderItem={({ item }) => (
+                renderItem={({ index, item }) => (
                     <Card
                         key={item.id}
-                        onPress={() => toggleSelected(item.id)}
-                        checked={item.id === selected}
+                        onPress={() => toggleSelected(index)}
+                        checked={index === selected}
                         testID={item.id}
                     >
                         <MinifigCard minifig={item}/>
@@ -60,10 +69,10 @@ function RandomScreen() {
             />
             <View paddingH-40>
                 <Button
-                    testID="chooseButton"
+                    testID="chooseFigure"
                     label="Select"
                     disabled={selected === null}
-                    onPress={() => navigation.navigate("PersonalDetails")}
+                    onPress={() => navigation.navigate("PersonalDetails", {minifig: data[selected!]})}
                 />
             </View>
         </SafeAreaView>

@@ -3,11 +3,17 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import {PersonalDetailsScreen, RandomScreen, SummaryScreen} from '@/screens'
 import {NavigationColors} from './utils/theme'
+import {Minifig, UserDetails} from './types'
 
 export type RootStackParamList = {
-    PersonalDetails: undefined
     Random: undefined
-    Summary: undefined
+    PersonalDetails: {
+        minifig: Minifig;
+    }
+    Summary: {
+        minifig: Minifig;
+        userDetails: UserDetails;
+    }
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
