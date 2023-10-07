@@ -1,41 +1,72 @@
-import { Dimensions, Text, View } from 'react-native';
-import Carousel from 'react-native-reanimated-carousel';
-import Menu from '@/components/Menu'
-import {useState} from 'react'
+import {useCallback, useState} from 'react'
+import { Dimensions, SafeAreaView } from 'react-native'
+import Carousel from 'react-native-reanimated-carousel'
+import {Text, View} from 'react-native-ui-lib'
+import {useNavigation} from '@react-navigation/native'
+import {NativeStackNavigationProp} from '@react-navigation/native-stack'
+import {RootStackParamList} from '@/AppContainer'
+import {useRandomMinifigs} from '@/services/useRandomMinifigs'
+import {Card, MinifigCard, LoaderScreen, StateScreen, Button} from '@/components'
 
 function RandomScreen() {
-    const [currentIndex, setCurrentIndex] = useState(0)
-    const width = Dimensions.get('window').width;
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+    const {data, isLoading, isError, error, refetch} = useRandomMinifigs()
+    const [selected, setSelected] = useState<string | null>(null)
+    const {width, height} = Dimensions.get('window')
     
+    const toggleSelected = useCallback((newState: string) => setSelected(currentState => {
+        if (currentState === newState) {
+            return null
+        }
+    
+        return newState
+    }), [])
+
+    if (isLoading) {
+        return <LoaderScreen />
+    }
+
+    if (isError) {
+        return (
+            <StateScreen
+                title="Unexpected error"
+                subtitle="Unexpected network error occured"
+                buttonLabel="Try again"
+                onPress={refetch}
+            />
+        )
+    }
+
     return (
-        <View style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, justifyContent: 'space-evenly' }}>
+            <Text text50M center>CHOOSE YOUR MINIFIG</Text>
             <Carousel
                 loop
                 width={width}
-                height={width / 2}
-                data={[...new Array(6).keys()]}
-                scrollAnimationDuration={1000}
-                onSnapToItem={setCurrentIndex}
-                testID={`randomCarousel.selected_${currentIndex}`}
+                height={height / 2}
+                data={data ?? []}
+                scrollAnimationDuration={500}
                 mode="parallax"
-
-                renderItem={({ index }) => (
-                    <View
-                        style={{
-                            flex: 1,
-                            borderWidth: 1,
-                            justifyContent: 'center',
-                        }}
+                renderItem={({ item }) => (
+                    <Card
+                        key={item.id}
+                        onPress={() => toggleSelected(item.id)}
+                        checked={item.id === selected}
+                        testID={item.id}
                     >
-                        <Text style={{ textAlign: 'center', fontSize: 30 }}>
-                            {index}
-                        </Text>
-                    </View>
+                        <MinifigCard minifig={item}/>
+                    </Card>
                 )}
             />
-            <Text>Random Screen</Text>
-            <Menu />
-        </View>
+            <View paddingH-40>
+                <Button
+                    testID="chooseButton"
+                    label="Select"
+                    disabled={selected === null}
+                    onPress={() => navigation.navigate("PersonalDetails")}
+                />
+            </View>
+        </SafeAreaView>
     );
 }
 

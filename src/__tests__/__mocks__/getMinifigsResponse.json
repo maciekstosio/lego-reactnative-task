@@ -1,0 +1,47 @@
+{
+    "count": 5,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "set_num": "fig-000029",
+            "name": "Harry Potter, Open Dark Blue Jacket over White Shirt, Dark Bluish Gray Legs",
+            "num_parts": 4,
+            "set_img_url": "https://cdn.rebrickable.com/media/sets/fig-000029/60572.jpg",
+            "set_url": "https://rebrickable.com/minifigs/fig-000029/harry-potter-open-dark-blue-jacket-over-white-shirt-dark-bluish-gray-legs/",
+            "last_modified_dt": "2020-04-30T06:04:42.346838Z"
+        },
+        {
+            "set_num": "fig-000457",
+            "name": "Harry Potter, Gryffindor Sweater with Crest",
+            "num_parts": 4,
+            "set_img_url": "https://cdn.rebrickable.com/media/sets/fig-000457/60621.jpg",
+            "set_url": "https://rebrickable.com/minifigs/fig-000457/harry-potter-gryffindor-sweater-with-crest/",
+            "last_modified_dt": "2020-05-04T06:17:01.206715Z"
+        },
+        {
+            "set_num": "fig-000471",
+            "name": "Harry Potter, Yellow Skin, Hogwarts Sweater with Crest, Black Hat, Cape with Stars",
+            "num_parts": 5,
+            "set_img_url": "https://cdn.rebrickable.com/media/sets/fig-000471/60211.jpg",
+            "set_url": "https://rebrickable.com/minifigs/fig-000471/harry-potter-yellow-skin-hogwarts-sweater-with-crest-black-hat-cape-with-stars/",
+            "last_modified_dt": "2020-05-04T06:13:43.600474Z"
+        },
+        {
+            "set_num": "fig-000593",
+            "name": "Hermione Granger, Yellow Skin, Medium Blue Sweater",
+            "num_parts": 4,
+            "set_img_url": "https://cdn.rebrickable.com/media/sets/fig-000593/60802.jpg",
+            "set_url": "https://rebrickable.com/minifigs/fig-000593/hermione-granger-yellow-skin-medium-blue-sweater/",
+            "last_modified_dt": "2020-05-04T05:42:10.076431Z"
+        },
+        {
+            "set_num": "fig-000594",
+            "name": "Ron Weasley, Yellow Skin, Blue Sweater, Cape with Stars",
+            "num_parts": 5,
+            "set_img_url": "https://cdn.rebrickable.com/media/sets/fig-000594/60312.jpg",
+            "set_url": "https://rebrickable.com/minifigs/fig-000594/ron-weasley-yellow-skin-blue-sweater-cape-with-stars/",
+            "last_modified_dt": "2020-05-04T07:04:36.588119Z"
+        }
+    ]
+}
