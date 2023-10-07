@@ -64,6 +64,10 @@ function RandomScreen() {
                         testID={item.id}
                     >
                         <MinifigCard minifig={item}/>
+                        <Button
+                            onPress={() => navigation.navigate('WebView', {url: item.url})}
+                            label="Show details"
+                        />
                     </Card>
                 )}
             />
