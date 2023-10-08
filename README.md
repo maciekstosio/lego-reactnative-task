@@ -19,7 +19,7 @@ To run this project, you will need to add the following environment variables to
 
 ## Installation
 
-Install lego-react-native-task with yarn
+Install lego-reactnative-task with yarn
 
 ```bash
   yarn install
