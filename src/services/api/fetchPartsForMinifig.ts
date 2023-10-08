@@ -8,11 +8,13 @@ const mapPart = (response: any): Part => ({
 })
 
 export const fetchPartsForMinifig = async (set_num: string) => {
-    const request = await fetch(`${config.apiBaseUrl}/minifigs/${set_num}/parts?` + new URLSearchParams({
-        key: config.apiKey
+    const response = await fetch(`${config.rebrickableApiBaseUrl}/minifigs/${set_num}/parts?` + new URLSearchParams({
+        key: config.rebrickableApiKey
     }))
 
-    const response = await request.json()
+    if (!response.ok) throw new Error(response.status.toString());
 
-    return response.results.map(mapPart)
+    const result = await response.json()
+
+    return result.results.map(mapPart) as Part[]
 }

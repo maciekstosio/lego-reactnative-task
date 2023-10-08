@@ -81,7 +81,59 @@ describe('personal details screen integration test', () => {
         await goToSummaryScreen()
 
         expect(screen.getByText('Unexpected error')).toBeOnTheScreen()
-        expect(screen.getByText('Unexpected network error occured')).toBeOnTheScreen()
+        expect(screen.getByText('Unexpected network error occured when fetching parts')).toBeOnTheScreen()
         expect(screen.getByText('Try again')).toBeOnTheScreen()
+    })
+    
+    it('shows loading when form is submitting and ', async () => {
+        const user = userEvent.setup()
+        fetchMock.getOnce(/api\/v3\/lego\/minifigs\/.*\/parts/, getPartForMinifig)
+        fetchMock.postOnce('http://localhost/placeOrder', 200, {delay: 200})
+        
+        render(
+            <AppContainer />
+        )
+        
+        await goToSummaryScreen()
+
+        await user.press(screen.getByText('Submit'))
+
+        expect(screen.getByText('Loading...')).toBeOnTheScreen()
+
+        await waitForElementToBeRemoved(() => screen.getByText('Loading...'))
+
+        expect(screen.getByText('CHOOSE YOUR MINIFIG')).toBeOnTheScreen()
+    })
+
+    it('shows error when form submitting failed', async () => {
+        const user = userEvent.setup()
+        fetchMock.getOnce(/api\/v3\/lego\/minifigs\/.*\/parts/, getPartForMinifig)
+        fetchMock.postOnce('http://localhost/placeOrder', 500)
+        
+        render(
+            <AppContainer />
+        )
+        
+        await goToSummaryScreen()
+
+        await user.press(screen.getByText('Submit'))
+
+        expect(screen.getByText('Error while placing an order, try again')).toBeOnTheScreen()
+    })
+
+    it('redirects to first page when submitting succeeded', async () => {
+        const user = userEvent.setup()
+        fetchMock.getOnce(/api\/v3\/lego\/minifigs\/.*\/parts/, getPartForMinifig)
+        fetchMock.postOnce('http://localhost/placeOrder', 200)
+        
+        render(
+            <AppContainer />
+        )
+        
+        await goToSummaryScreen()
+
+        await user.press(screen.getByText('Submit'))
+
+        expect(screen.getByText('CHOOSE YOUR MINIFIG')).toBeOnTheScreen()
     })
 })

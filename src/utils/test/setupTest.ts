@@ -8,8 +8,9 @@ queryClient.setDefaultOptions({
     },
     mutations: {
         retry: 0,
-    }
+    },
 })
+
 
 afterEach(() => {
     queryClient.clear()

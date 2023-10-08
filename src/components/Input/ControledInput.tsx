@@ -1,6 +1,7 @@
 import {TextInput, TextInputProps} from 'react-native'
 import {Control, FieldPath, FieldValues, useController} from 'react-hook-form'
 import {View, Text} from 'react-native-ui-lib'
+import TextError from '../TextError'
 
 interface InputProps<T extends FieldValues> {
     label: string,
@@ -43,9 +44,7 @@ const ControledInput = <T extends FieldValues>({
                 autoComplete={autoComplete}
                 testID={`text-input.${name}`}
             />
-            <View>
-                <Text error marginT-5>{errors?.[name]?.message as string}</Text>
-            </View>
+            <TextError>{errors?.[name]?.message as string}</TextError>
         </View>
     )
 }

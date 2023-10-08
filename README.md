@@ -14,8 +14,9 @@ A simple three-page application that allows users to draw five different LEGO mi
 To run this project, you will need to add the following environment variables to your .env file
 
 ```bash
-EXPO_PUBLIC_API_URL=https://rebrickable.com/api/v3/lego
-EXPO_PUBLIC_API_KEY=youKeyToRebrickableApi
+EXPO_PUBLIC_REBRICKABLE_API_URL=https://rebrickable.com/api/v3/lego
+EXPO_PUBLIC_REBRICKABLE_API_KEY=youKeyToRebrickableApi
+EXPO_PUBLIC_API_URL=http://localhost
 ```
 
 ## Installation
