@@ -25,6 +25,7 @@ Install lego-reactnative-task with yarn
   yarn install
   yarn start
 ```
+Expo will generate an QR code. You can use this to run the app using Expo Go App or locally on simulator.
     
 ## Running Tests
 
