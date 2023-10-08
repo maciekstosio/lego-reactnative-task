@@ -1,10 +1,11 @@
 import {useCallback, useState} from 'react'
-import { Dimensions, SafeAreaView } from 'react-native'
+import { Dimensions, Platform, SafeAreaView } from 'react-native'
 import Carousel from 'react-native-reanimated-carousel'
 import {Text, View} from 'react-native-ui-lib'
 import {useRandomMinifigs} from '@/services/useRandomMinifigs'
 import {Card, MinifigCard, LoaderScreen, StateScreen, Button} from '@/components'
 import {useNavigation} from '@/utils'
+import Header from '@/components/Header'
 
 function RandomScreen() {
     const navigation = useNavigation()
@@ -48,11 +49,11 @@ function RandomScreen() {
 
     return (
         <SafeAreaView style={{ flex: 1, justifyContent: 'space-evenly' }}>
-            <Text text50M center>CHOOSE YOUR MINIFIG</Text>
+            <Header>CHOOSE YOUR MINIFIG</Header>
             <Carousel
                 loop
                 width={width}
-                height={height / 2}
+                height={height * (Platform.OS == 'ios' ? 0.5 : 0.6)}
                 data={data}
                 scrollAnimationDuration={500}
                 mode="parallax"
@@ -65,6 +66,7 @@ function RandomScreen() {
                     >
                         <MinifigCard minifig={item}/>
                         <Button
+                            testID={`showDetails.${item.id}`}
                             onPress={() => navigation.navigate('WebView', {url: item.url})}
                             label="Show details"
                         />

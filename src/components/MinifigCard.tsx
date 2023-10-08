@@ -9,13 +9,12 @@ interface MinifigCardProps {
 const MinifigCard = ({minifig}: MinifigCardProps) => (
     <View
         testID={`minifig.${minifig.id}`}
-        flex
         centerH
     >
         <View marginB-20 width={200} height={200}>
             <Image url={minifig.image} />
         </View>
-        <Text style={{ textAlign: 'center', fontSize: 30 }}>
+        <Text text50M marginB-20 center>
             {minifig.name}
         </Text>
     </View>

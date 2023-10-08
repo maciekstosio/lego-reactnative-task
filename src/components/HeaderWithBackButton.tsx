@@ -1,26 +1,28 @@
-import {View, ColorValue} from 'react-native'
+import {View, ColorValue, Platform} from 'react-native'
 import {useNavigation} from '@/utils'
-import {Ionicons} from '@expo/vector-icons'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import Icon, {IconProps} from './Icon'
 
 interface HeaderWithBackButtonProps {
     backgroundColor?: ColorValue;
-    iconName?:  React.ComponentProps<typeof Ionicons>['name'];
+    iconName?:  IconProps['name'];
 }
 
 const HeaderWithBackButton = ({
     backgroundColor,
     iconName = 'close'
 }: HeaderWithBackButtonProps) => {
+    const insets = useSafeAreaInsets()
     const navigation = useNavigation()
 
     return (
         <View style={{
-            height: 50,
-            paddingHorizontal: 5,
+            padding: 10,
+            paddingTop: Platform.OS === 'ios' ? 10 : insets.top + 10,
             justifyContent: 'center',
             backgroundColor: backgroundColor,
         }}>
-            <Ionicons name={iconName} size={34} onPress={navigation.goBack}/>
+            <Icon name={iconName} size={34} onPress={navigation.goBack}/>
         </View>
     )
 }

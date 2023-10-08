@@ -1,10 +1,11 @@
 import {Dimensions, Keyboard, TouchableWithoutFeedback} from 'react-native'
 import {useForm} from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import {Button, ControledInput} from '@/components'
+import {Button, ControledInput, HeaderWithBackButton} from '@/components'
 import {View, Text, KeyboardAwareScrollView} from 'react-native-ui-lib'
 import {UserDetails, userDetailsSchema} from '@/types'
 import {useNavigation, useRoute} from '@/utils'
+import Header from '@/components/Header'
 
 function PersonalDetailsScreen() {
     const {height} = Dimensions.get('window')
@@ -27,7 +28,7 @@ function PersonalDetailsScreen() {
 
     const onSubmit = (userDetails: UserDetails) => navigation.navigate('Summary', {
         minifig,
-        userDetails: userDetails,
+        userDetails,
     })
 
     return (
@@ -44,7 +45,7 @@ function PersonalDetailsScreen() {
                         minHeight: height
                     }}
                 >
-                    <Text text50M center>PERSONAL DETAILS</Text>
+                    <Header>PERSONAL DETAILS</Header>
                     <View>
                         <ControledInput
                             label="Full name"

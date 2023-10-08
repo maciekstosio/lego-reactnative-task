@@ -1,10 +1,15 @@
 import { Image as ExpoImage } from 'expo-image';
+import ImagePlaceholder from './ImagePlaceholder'
 
 export interface ImageProps {
-    url: string;
+    url?: string;
 }
 
 export default ({url}: ImageProps) => {
+    if (!url) {
+        return <ImagePlaceholder />
+    }
+
     return (
         <ExpoImage
             style={{

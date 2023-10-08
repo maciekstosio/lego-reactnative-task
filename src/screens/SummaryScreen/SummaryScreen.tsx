@@ -1,35 +1,10 @@
 import {ScrollView, View} from 'react-native'
 import {Text} from 'react-native-ui-lib'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import {LoaderScreen, MinifigCard, StateScreen, Image, Card, Button, HeaderWithBackButton} from '@/components'
+import {LoaderScreen, MinifigCard, StateScreen, PartCard, Button, HeaderWithBackButton} from '@/components'
 import {useNavigation, useRoute} from '@/utils'
 import {usePartsForMinifig} from '@/services'
-import {Part} from '@/types'
 
-interface PartCardProps {
-    part: Part;
-}
-
-const PartCard = ({
-    part,
-}: PartCardProps) => (
-    <View style={{
-        flexDirection: 'row',
-        marginBottom: 10,
-        alignItems: 'center',
-        backgroundColor: "#fff",
-        padding: 10,
-        borderRadius: 10
-    }}>
-        <View style={{width: 50, height: 50, marginRight: 10}}>
-            <Image url={part.image} />
-        </View>
-        <View style={{flex: 1, justifyContent: 'center'}}>
-            <Text text80M numberOfLines={1}>{part.name}</Text>
-            <Text numberOfLines={1}>{part.id}</Text>
-        </View>
-    </View>
-)
 function SummaryScreen() {
     const insets = useSafeAreaInsets()
     const navigation = useNavigation()

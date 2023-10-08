@@ -24,9 +24,10 @@ const Card =  ({children, checked, onPress, testID}: CardProps) => (
 const styles = StyleSheet.create({
     card: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         padding: 40,
         borderRadius: 40,
+        marginHorizontal: 10,
         backgroundColor: '#fff',
     },
     selected: {
