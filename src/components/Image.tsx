@@ -16,6 +16,7 @@ export default ({url}: ImageProps) => {
                 flex: 1,
                 width: '100%',
             }}
+            testID={`image.${url}`}
             contentFit="contain"
             source={url}
         />

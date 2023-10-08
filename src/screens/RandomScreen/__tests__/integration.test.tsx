@@ -1,4 +1,4 @@
-import {act, fireEvent, render, screen, userEvent, waitFor, waitForElementToBeRemoved} from '@testing-library/react-native'
+import {act, fireEvent, render, screen, userEvent, waitFor, waitForElementToBeRemoved, within} from '@testing-library/react-native'
 import AppContainer from '@/AppContainer'
 import getMinifigsResponse from '@/utils/test/__mocks__/getMinifigsResponse.json'
 import getMinifigsEmptyResponse from '@/utils/test/__mocks__/getMinifigsEmptyResponse.json'
@@ -66,6 +66,44 @@ describe('random screen integration test', () => {
         expect(minigis.length).toBe(5)
     })
 
+    it('displays cards with minifigs correctly', async () => {
+        render(
+            <AppContainer />
+        )
+        
+        await waitForElementToBeRemoved(() => screen.getByText('Loading...'))
+
+        await waitFor(() => screen.getByTestId("__CAROUSEL_ITEM_0_READY__"));
+
+        getMinifigsResponse.results.forEach(result => {
+            const cardForMinifig = within(screen.getByTestId(`card.${result.set_num}`));
+
+            expect(cardForMinifig.getByText(result.name.split(',')[0])).toBeOnTheScreen()
+            expect(cardForMinifig.getByText('Show details')).toBeOnTheScreen()
+            expect(cardForMinifig.getByText('Show details')).toBeOnTheScreen()
+            expect(cardForMinifig.getByTestId(`button.showDetails.${result.set_num}`)).toBeOnTheScreen()
+
+            if (result.set_img_url) {
+                expect(cardForMinifig.getByTestId(`image.${result.set_img_url}`)).toBeOnTheScreen()
+            } else {
+                expect(cardForMinifig.getByTestId('icon.camera')).toBeOnTheScreen()
+            }
+        })
+    })
+
+    it('displays ImagePlaceholder when url is missing', async () => {
+        render(
+            <AppContainer />
+        )
+        
+        await waitForElementToBeRemoved(() => screen.getByText('Loading...'))
+
+        await waitFor(() => screen.getByTestId("__CAROUSEL_ITEM_0_READY__"));
+        
+        const cardWithMissingImage = within(screen.getByTestId('card.fig-000457'));
+        expect(cardWithMissingImage.getByTestId('icon.camera')).toBeOnTheScreen();
+    })
+
     it('enables the button when minifig is select', async () => {
         render(
             <AppContainer />
@@ -83,11 +121,11 @@ describe('random screen integration test', () => {
     it('unselects the minifig when pressed second time ', async () => {
         render(
             <AppContainer />
-            )
-            
-            await waitForElementToBeRemoved(() => screen.getByText('Loading...'))
-            
-            await waitFor(() => screen.getByTestId("__CAROUSEL_ITEM_0_READY__"));
+        )
+        
+        await waitForElementToBeRemoved(() => screen.getByText('Loading...'))
+        
+        await waitFor(() => screen.getByTestId("__CAROUSEL_ITEM_0_READY__"));
         
         fireEvent(screen.getByText('Hermione Granger'), 'press')
         expect(screen.getByTestId('button.chooseFigure').props.accessibilityState.disabled).toBeFalsy()
