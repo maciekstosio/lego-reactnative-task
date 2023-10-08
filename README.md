@@ -22,6 +22,8 @@ To run this project, you will need to add the following environment variables to
 Install lego-reactnative-task with yarn
 
 ```bash
+  git clone https://github.com/maciekstosio/lego-reactnative-task.git
+  cd lego-reactnative-task
   yarn install
   yarn start
 ```
@@ -29,6 +31,8 @@ Install lego-reactnative-task with yarn
 or with npm
 
 ```bash
+  git clone https://github.com/maciekstosio/lego-reactnative-task.git
+  cd lego-reactnative-task
   npm install
   npm start
 ```
