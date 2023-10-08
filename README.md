@@ -1,7 +1,7 @@
 
 # Lego React Native Task
 
-A simple three-page application that allows users to draw three different LEGO mini figures (commonly referred to as a minifigs) from the Harry Potter series and get one of them free of charge.
+A simple three-page application that allows users to draw five different LEGO mini figures (commonly referred to as a minifigs) from the Harry Potter series and get one of them free of charge.
 
 
 
