@@ -105,7 +105,8 @@ describe('personal details screen integration test', () => {
         expect(screen.getByText('CHOOSE YOUR MINIFIG')).toBeOnTheScreen()
     })
 
-    it('shows error when form submitting failed', async () => {
+    // Skipped as in requirement we should go to main screen anyway, should change in summary onSettled to onSuccess
+    it.skip('shows error when form submitting failed', async () => {
         const user = userEvent.setup()
         fetchMock.getOnce(/api\/v3\/lego\/minifigs\/.*\/parts/, getPartForMinifig)
         fetchMock.postOnce('http://localhost/placeOrder', 500)

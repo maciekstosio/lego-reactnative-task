@@ -39,7 +39,8 @@ function SummaryScreen() {
             parts_ids: data.map(part => part.id),
             userDetails,
         }, {
-            onSuccess: () => {      
+            // onSettled as in requirement we should go to main screen anyway, should be changed to onSuccess and then test in src/screens/SummaryScreen/__tests__/integration.test.tsx can be unskipped
+            onSettled: () => {      
                 navigation.popToTop()
             }
         })
