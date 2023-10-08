@@ -7,7 +7,8 @@ A simple three-page application that allows users to draw five different LEGO mi
 
 ## Demo
 
-TODO
+![til](./demo.gif)
+
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
