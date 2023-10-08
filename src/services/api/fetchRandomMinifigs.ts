@@ -7,8 +7,9 @@ const PAGE_SIZE = Number.MAX_SAFE_INTEGER
 
 const mapMinifig = (response: any): Minifig => ({
     id: response.set_num,
-    name: response.name,
+    name: response.name.split(',')[0],
     image: response?.set_img_url,
+    url: response?.set_url,
 })
 
 export const fetchRandomMinifigs = async (n: number = 5) => {

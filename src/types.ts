@@ -22,11 +22,17 @@ export const userDetailsSchema = yup.object({
         .required(),
 })
 
+export type UserDetails = yup.InferType<typeof userDetailsSchema>;
 
 export interface Minifig {
     id: string;
     name: string;
     image: string;
+    url: string;
 }
 
-export type UserDetails = yup.InferType<typeof userDetailsSchema>;
+export interface Part {
+    id: string;
+    name: string;
+    image: string;
+}

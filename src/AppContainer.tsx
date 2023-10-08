@@ -35,7 +35,7 @@ export default function AppRouting() {
                 >
                     <Stack.Screen name="Random" component={RandomScreen} />
                     <Stack.Screen name="PersonalDetails" component={PersonalDetailsScreen} />
-                    <Stack.Screen name="Summary" component={SummaryScreen} />
+                    <Stack.Screen name="Summary" component={SummaryScreen} options={{presentation: 'fullScreenModal'}} />
                     <Stack.Screen name="WebView" component={WebViewModal} options={{presentation: 'modal'}}/>
                 </Stack.Navigator>
             </NavigationContainer>

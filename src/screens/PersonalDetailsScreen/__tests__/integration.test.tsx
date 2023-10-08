@@ -1,6 +1,7 @@
 import {act, fireEvent, render, screen, userEvent, waitFor, waitForElementToBeRemoved} from '@testing-library/react-native'
 import AppContainer from '@/AppContainer'
 import getMinifigsResponse from '@/utils/test/__mocks__/getMinifigsResponse.json'
+import getPartForMinifig from '@/utils/test/__mocks__/getPartForMinifig.json'
 
 jest.useFakeTimers()
 
@@ -12,7 +13,7 @@ describe('personal details screen integration test', () => {
 
         await waitFor(() => screen.getByTestId("__CAROUSEL_ITEM_0_READY__"));
         
-        fireEvent(screen.getByText(/Hermione Granger/), 'press')
+        fireEvent(screen.getByText('Hermione Granger'), 'press')
         fireEvent(screen.getByText('Select'), 'press')
     }
 
@@ -210,6 +211,7 @@ describe('personal details screen integration test', () => {
     })
 
     it('moves to the summary screen when form is valid and view summary button is pressed', async () => {
+        fetchMock.getOnce(/api\/v3\/lego\/minifigs\/.*\/parts/, getPartForMinifig)
         const user = userEvent.setup();
 
         render(

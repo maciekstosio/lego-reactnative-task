@@ -75,7 +75,7 @@ describe('random screen integration test', () => {
 
         await waitFor(() => screen.getByTestId("__CAROUSEL_ITEM_0_READY__"));
         
-        fireEvent(screen.getByText(/Hermione Granger/), 'press')
+        fireEvent(screen.getByText('Hermione Granger'), 'press')
         expect(screen.getByTestId('button.chooseFigure').props.accessibilityState.disabled).toBeFalsy()
         expect(screen.getByTestId('card.fig-000593').props.accessibilityState.selected).toBeTruthy()
     })
@@ -89,10 +89,10 @@ describe('random screen integration test', () => {
             
             await waitFor(() => screen.getByTestId("__CAROUSEL_ITEM_0_READY__"));
         
-        fireEvent(screen.getByText(/Hermione Granger/), 'press')
+        fireEvent(screen.getByText('Hermione Granger'), 'press')
         expect(screen.getByTestId('button.chooseFigure').props.accessibilityState.disabled).toBeFalsy()
         expect(screen.getByTestId('card.fig-000593').props.accessibilityState.selected).toBeTruthy()
-        fireEvent(screen.getByText(/Hermione Granger/), 'press')
+        fireEvent(screen.getByText('Hermione Granger'), 'press')
         expect(screen.getByTestId('button.chooseFigure').props.accessibilityState.disabled).toBeTruthy()
         expect(screen.getByTestId('card.fig-000593').props.accessibilityState.selected).toBeFalsy()
     })
@@ -106,7 +106,7 @@ describe('random screen integration test', () => {
 
         await waitFor(() => screen.getByTestId("__CAROUSEL_ITEM_0_READY__"));
         
-        fireEvent(screen.getByText(/Hermione Granger/), 'press')
+        fireEvent(screen.getByText('Hermione Granger'), 'press')
         expect(screen.getByTestId('button.chooseFigure').props.accessibilityState.disabled).toBeFalsy()
         expect(screen.getByTestId('card.fig-000593').props.accessibilityState.selected).toBeTruthy()
         
@@ -114,10 +114,10 @@ describe('random screen integration test', () => {
         
         expect(allCards.filter(card => card.props.accessibilityState.selected).length).toBe(1)
         
-        fireEvent(screen.getByText(/Harry Potter, Open Dark Blue Jacke/), 'press')
+        fireEvent(screen.getByText('Ron Weasley'), 'press')
         expect(screen.getByTestId('button.chooseFigure').props.accessibilityState.disabled).toBeFalsy() // Button still enabled
         expect(screen.getByTestId('card.fig-000593').props.accessibilityState.selected).toBeFalsy() // Hermione unselected
-        expect(screen.getByTestId('card.fig-000029').props.accessibilityState.selected).toBeTruthy() // Harry selected
+        expect(screen.getByTestId('card.fig-000594').props.accessibilityState.selected).toBeTruthy() // Ron selected
 
         expect(allCards.filter(card => card.props.accessibilityState.selected).length).toBe(1)
     })
@@ -159,7 +159,7 @@ describe('random screen integration test', () => {
 
         await waitFor(() => screen.getByTestId("__CAROUSEL_ITEM_0_READY__"));
         
-        fireEvent(screen.getByText(/Hermione Granger/), 'press')
+        fireEvent(screen.getByText('Hermione Granger'), 'press')
         fireEvent(screen.getByText('Select'), 'press')
 
         expect(screen.getByText('PERSONAL DETAILS')).toBeOnTheScreen()
