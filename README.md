@@ -38,6 +38,6 @@ To run tests, run the following command
 
 ## Authors
 
-- [@maciejstosio](https://www.github.com/maciejstosio)
+- [@maciekstosio](https://www.github.com/maciekstosio)
 
 
