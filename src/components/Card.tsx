@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         padding: 40,
-        borderRadius: 50,
+        borderRadius: 40,
         backgroundColor: '#fff',
     },
     selected: {

@@ -25,7 +25,7 @@ const ControledInput = <T extends FieldValues>({
     })
 
     return (
-        <View style={{marginVertical: 5}}>
+        <View style={{marginBottom: 5}}>
             <Text text80M marginB-5>{label}</Text>
             <TextInput
                 style={{
