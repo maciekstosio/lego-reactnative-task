@@ -12,10 +12,10 @@ TODO
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`EXPO_PUBLIC_API_URL` - url to rebrickable api (https://rebrickable.com/api/v3/lego)
-
-`EXPO_PUBLIC_API_KEY` - api key to rebrickable api
-
+```bash
+EXPO_PUBLIC_API_URL=https://rebrickable.com/api/v3/lego
+EXPO_PUBLIC_API_KEY=youKeyToRebrickableApi
+```
 
 ## Installation
 
