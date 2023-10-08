@@ -12,17 +12,23 @@ function SummaryScreen() {
     const {data, isLoading, isError, refetch} = usePartsForMinifig(minifig.id)
 
     if (isLoading) {
-        return <LoaderScreen />
+        return (
+            <View style={{backgroundColor: "#fff", flex: 1}}>
+                <LoaderScreen />
+            </View>
+        )
     }
 
     if (isError) {
         return (
-            <StateScreen
-                title="Unexpected error"
-                subtitle="Unexpected network error occured"
-                buttonLabel="Try again"
-                onPress={refetch}
-            />
+            <View style={{backgroundColor: "#fff", flex: 1}}>
+                <StateScreen
+                    title="Unexpected error"
+                    subtitle="Unexpected network error occured"
+                    buttonLabel="Try again"
+                    onPress={refetch}
+                />
+            </View>
         )
     }
 
