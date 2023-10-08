@@ -10,6 +10,7 @@ function WebViewModal() {
         <View style={{flex: 1}}>
             <HeaderWithBackButton backgroundColor="#fff" />
             <WebView
+                testID="web-view"
                 style={{flex: 1}}
                 source={{ uri: url}}
             />
